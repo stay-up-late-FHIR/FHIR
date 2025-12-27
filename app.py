@@ -13,7 +13,7 @@ except ImportError:
     st.error("❌ 找不到模組，請確認 fhir_gateway.py 和 ai_engine.py 存在")
     st.stop()
 
-st.set_page_config(layout="wide", page_title="H1 守護者：AI 智慧救護平台")
+st.set_page_config(layout="wide", page_title="H1 智慧手錶救護平台")
 FHIR_SERVER_URL = "https://hapi.fhir.org/baseR4"
 
 # --- 初始化 Session State ---
@@ -45,7 +45,7 @@ def extract_id_from_response(resp_json, res_type="Patient"):
     return None
 
 # --- UI 開始 ---
-st.title("🛡️ H1 守護者：AI 智慧救護與 PHR 平台")
+st.title("🛡️ H1 智慧手錶救護與 PHR 平台")
 
 # 定義四個分頁
 tab_reg, tab_watch, tab_er, tab_phr = st.tabs(["📝 病患註冊 (Portal)", "⌚ 智慧手錶 (Watch)", "🚑 急診醫護 (Emergency)", "📂 PHR 病歷調閱 (History)"])
@@ -205,7 +205,7 @@ with tab_er:
             
         with col_comm:
             st.subheader("👨‍⚕️ 醫生通訊")
-            st.caption("您可以發送安撫訊息或指導給病患")
+            st.caption("您可以發送安撫訊息或指導給病患的裝置")
             msg_input = st.text_input("輸入訊息", "救護車已在路上，請保持通話。")
             
             # [修正點 3] 將訊息存入 Session State 讓手錶讀取
@@ -263,4 +263,5 @@ with tab_phr:
                         st.warning("查無此 ID 的相關病歷資料 (可能是新註冊用戶尚無數據)。")
                 except Exception as e:
                     st.error(f"連線錯誤: {e}")
+
 
